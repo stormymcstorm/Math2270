@@ -3,15 +3,12 @@
 \usepackage{graphicx}
 \usepackage{float}
 
-\newcommand{\R}{\mathbb{R}}  % The real numbers.
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-
 \newcommand{\Let}[1]{\textit{let }#1}
 \newcommand{\Powerset}[1]{\mathcal{P}(#1)}
 \newcommand{\By}[1]{\text{(by #1)}}
 \newcommand{\circnum}[1]{\text{\textcircled{#1}}}
-\newcommand{\Vect}[1]{\pmb{#1}}
+
+\newenvironment{Mat}{\begin{bmatrix}}{\end{bmatrix}}
 
 % Assigment Info
 \coursetitle{Linear Algebra}
@@ -31,75 +28,185 @@
 % Section 1.5 #1, 3, 7, 11, 13, 15, 19, 25, 27, 39
 
 \begin{problem}[1.4\#1]
-    
+    Compute the product using (a) the definition, as in Example 1, and (b) the row–vector rule for computing $A\Vect{x}$. If aproduct is undefined, explain why.
+
+    \begin{equation*}
+        \begin{Mat}
+            -4 & 2 \\
+            1 & 6 \\
+            0 & 1
+        \end{Mat}
+        \begin{Mat}
+            3 \\ -2 \\ 7
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.4\#3]
-    
+    Compute the product using (a) the definition, as in Example 1, and (b) the row–vector rule for computing $A\Vect{x}$. If aproduct is undefined, explain why.
+
+    \begin{equation*}
+        \begin{Mat}
+            6 & 5 \\
+            -4 & 4 \\
+            7 & 6
+        \end{Mat}
+        \begin{Mat}
+            -2 \\ 3
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.4\#7]
-    
+    Use the definition of $A\Vect{x}$ to write the vector equation as a matrix equation.
+
+    \begin{equation*}
+        \begin{Mat}
+            4 \\ -1 \\ 7 \\ -4
+        \end{Mat}x_1 + \begin{Mat}
+            -5 \\ 3 \\ -5 \\ 1
+        \end{Mat}x_2 + \begin{Mat}
+            7 \\ -8 \\ 0 \\ 2
+        \end{Mat}x_3 = \begin{Mat}
+            6 \\ -8 \\ 0 \\ -7
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.4\#11]
-    
+    Given $A$ and $\Vect{b}$, write the augmented matrix for the linear system that corresponds to the matrix equation $A\Vect{x} = \Vect{b}$. Then solve the system and write the solution as a vector.
+
+    \begin{equation*}
+        A = \begin{Mat}
+            1 & 2 & 4 \\
+            0 & 1 & 5 \\
+            -2 & -4 & -3
+        \end{Mat}, \Vect{b} = \begin{Mat}
+            -2 \\ 2 \\ 9
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.4\#15]
-    
+    Let $A = \begin{Mat}
+        2 & -1 \\
+        -6 & 3
+    \end{Mat}$ and $\Vect{b} = \begin{Mat}
+        b_1 \\ b_2
+    \end{Mat}$. Show that the equation $A\Vect{x} = \Vect{b}$ does not have a solution for all possible $\Vect{b}$, 
+    and describe the solution set of all $\Vect{b}$ for which $A\Vect{x} = \Vect{b}$ \textit{does} has a solution.
 \end{problem}
 
 \begin{problem}[1.4\#19]
-    
+    Can each vector in $\R^4$ be written as a linear combination of the columns of the matrix $A$? Do the columns of $A$ span $\R^4$?
 \end{problem}
 
 \begin{problem}[1.4\#21]
-    
+    Let $\Vect{v_1} = \begin{Mat}
+        1 \\ 0 \\ -1 \\ 0
+    \end{Mat}$, $\Vect{v_2} = \begin{Mat}
+        0 \\ -1 \\ 0 \\ 1
+    \end{Mat}$, $\Vect{v_3} = \begin{Mat}
+        1 \\ 0 \\ 0 \\ -1
+    \end{Mat}$. Does $\Set{\Vect{v_1}, \Vect{v_2}, \Vect{v_3}}$ span $\R^3$? Why or why not?
 \end{problem}
 
 \begin{problem}[1.4\#25]
-    
+    Mark each statement as True or False. Justify your answer.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item The equation $A\Vect{x} = b$ is referred to as the \textit{vector equation}.
+        \item A vector $\Vect{b}$ is a linear combination of the columns of a matrix $A$ if and only if the equation $A\Vect{x} = \Vect{b}$ has at least one solution.
+        \item The equation $A\Vect{x} = \Vect{b}$ is consistent if the augmented matrix $\begin{Mat}
+            A & \Vect{b}
+        \end{Mat}$ has a pivot position in every row.
+        \item The first entry in the product $A\Vect{x}$ is a sum of products.
+        \item If the columns of an $m \times n$ matrix $A$ span $\R^m$, then the equation $A\Vect{x} = \Vect{b}$ is consistent for each b in $\R^m$.
+        \item If $A$ is an $m \times n$ matrix and if the equation $A\Vect{x} = \Vect{b}$ is inconsistent for some $\Vect{b}$ in $\R^m$, then $A$ cannot have a pivot position in every row.
+    \end{enumerate}
 \end{problem}
 
 \begin{problem}[1.5\#1]
-    
+    Determin if the system  has a nontrival solution. Try to use as few row operations as possible.
+
+    \begin{align*}
+        2x_1 - 5x_2 + 8x_3 &= 0 \\
+        -2x_2 - 7x_2 + x_3 &= 0 \\
+        4x_1 + 2x_2 + 7x_3 &= 0
+    \end{align*}
 \end{problem}
 
 \begin{problem}[1.5\#3]
-    
+    Determin if the system  has a nontrival solution. Try to use as few row operations as possible.
+
+    \begin{align*}
+        -3x_1 + 5x_2 - 7x_3 &= 0 \\
+        -6x_1 + 7x_2 + x_3 &= 0
+    \end{align*}
 \end{problem}
 
 \begin{problem}[1.5\#7]
-    
+    Describe all solutions of $A\Vect{x} = \Vect{0}$ in parametric form, where $A$ is row equivalent to the given matrix.
+
+    \begin{equation*}
+        \begin{Mat}
+            1 & 3 & -3 & 7 \\
+            0 & 1 & -4 & 5
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.5\#11]
-    
+    Describe all solutions of $A\Vect{x} = \Vect{0}$ in parametric form, where $A$ is row equivalent to the given matrix.
+
+    \begin{equation*}
+        \begin{Mat}
+            1 & -4 & -2 & 0 & 3 & -5 \\
+            0 & 0 & 1 & 0 & 0 & -1 \\
+            0 & 0 & 0 & 0 & 1 & -4 \\
+            0 & 0 & 0 & 0 & 0 & 0
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.5\#13]
-    
+    Suppose the solution set of a certain linear system of equations can be described as $x_1 = 5 + 4x_3$, $x_2 = -2 -7x_3$, with $x_3$ free. Use vectors to describe this set as a line in $\R^3$.
 \end{problem}
 
 \begin{problem}[1.5\#15]
-    
+    Follow the method of Example 3 to describe the solution  of the following system in parametric form. 
+    Also, give a geometric description of the solution set and compare it to that in Exercise 5.
+
+    \begin{align*}
+        x_1 + 3x_2 + x_3 & = 1 \\
+        -4x_1 - 9x_2 + 2x_3 & = -1 \\
+        -3x_2 - 6x_3 &= -3
+    \end{align*}
 \end{problem}
 
 \begin{problem}[1.5\#19]
-    
+    Find the parametric equation of the line through $\Vect{a}$ and parallel to $\Vect{b}$.
+
+    \begin{equation*}
+        \Vect{a} = \begin{Mat}
+            -2 \\ 0
+        \end{Mat}, \Vect{b} = \begin{Mat}
+            -5 \\ 3
+        \end{Mat}
+    \end{equation*}
 \end{problem}
 
 \begin{problem}[1.5\#25]
-    
+    Prove the second part of Theorem 6: Let $\Vect{w}$ be any solution of $A\Vect{x} = \Vect{b}$, and define $\Vect{v_h} = \Vect{w} - \Vect{p}$. Show that $\Vect{v_h}$ is a solution of $A\Vect{x} = \Vect{0}$.
+    This shows that every solution of $A\Vect{x} = \Vect{b}$ has the form $\Vect{w} = \Vect{p} + \Vect{v_h}$, with $\Vect{p}$ a particular solution of $A\Vect{x} = \Vect{b}$ and $\Vect{v_h}$ a solution of $A\Vect{x} = 0$.
 \end{problem}
 
 \begin{problem}[1.5\#27]
-    
+    Suppose $A$ is a $3 \times 3$ \textit{zero} matrix (with all zero entries). Describe the solution set of the equation $A\Vect{x} = \Vect{0}$.
 \end{problem}
 
 \begin{problem}[1.5\#39s]
-    
+    Let $A$ be an $m \times n$ matrix, and let $\Vect{u}$ be a vector in $\R^n$ that satisfies the equation $A\Vect{x} = \Vect{0}$. Show that for any scalar $c$ the vector $c\Vect{u}$ also satisfies $A\Vect{x} = \Vect{0}$. [That is, show that $A(c\Vect{u}) = \Vect{0}$].
 \end{problem}
 
 \end{document}
