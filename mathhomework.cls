@@ -98,3 +98,15 @@
     \par\noindent%
     \ignorespacesafterend
 }
+
+% Useful commands
+
+% Number sets
+\newcommand{\R}{\mathbb{R}}  % The real numbers.
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{\Q}}
+
+% Object notations
+\newcommand{\Vect}[1]{\pmb{#1}}
+\newcommand{\Set}[1]{\{#1\}}
