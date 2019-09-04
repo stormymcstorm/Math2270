@@ -28,7 +28,7 @@
 % Section 1.5 #1, 3, 7, 11, 13, 15, 19, 25, 27, 39
 
 \begin{problem}[1.4\#1]
-    Compute the product using (a) the definition, as in Example 1, and (b) the row–vector rule for computing $A\Vect{x}$. If aproduct is undefined, explain why.
+    Compute the product using (a) the definition, as in Example 1, and (b) the row–vector rule for computing $A\Vect{x}$. If a product is undefined, explain why.
 
     \begin{equation*}
         \begin{Mat}
@@ -40,6 +40,10 @@
             3 \\ -2 \\ 7
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}
+        The product is undefined because the number of columns in $A$ is not equal to the number of rows in $\Vect{x}$.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.4\#3]
@@ -52,9 +56,61 @@
             7 & 6
         \end{Mat}
         \begin{Mat}
-            -2 \\ 3
+            2 \\ -3
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}[Part A:]
+        \begin{equation*}
+            \begin{Mat}
+                6 & 5 \\
+                -4 & 4 \\
+                7 & 6
+            \end{Mat}
+            \begin{Mat}
+                -2 \\ 3
+            \end{Mat} =
+            2 \begin{Mat} 6 \\ -4 \\ 7 \end{Mat}
+            - 3 \begin{Mat} 5 \\ -3 \\ 6 \end{Mat}
+            =
+            \begin{Mat}
+                -3 \\ 1 \\ -4 
+            \end{Mat}
+        \end{equation*}
+    \end{solution}
+
+    \begin{solution}[Part B:]
+        \begin{equation*}
+            \begin{Mat}
+                2(6) - 3(5) \\
+                2(-4) - 3(-3) \\
+                2(7) - 3(6) \\
+            \end{Mat} = \begin{Mat}
+                -3 \\ 1 \\ -4
+            \end{Mat}
+        \end{equation*}
+    \end{solution}
+\end{problem}
+
+\begin{problem}[1.4\#5]
+    Use the definition of $A\Vect{x}$ to write the matrix equation as a vector equation.
+
+    \begin{equation*}
+        \begin{Mat}
+            5 & 1 & -8 & 4 \\
+            -2 & -7 & 3 & -5
+        \end{Mat} \begin{Mat}
+            5 \\ -1 \\ 3 \\ -2
+        \end{Mat} = \begin{Mat}
+            -8 \\ 16
+        \end{Mat}
+    \end{equation*}
+
+    \begin{solution}
+        \begin{equation*}
+            5\begin{Mat}5\\-2\end{Mat} - \begin{Mat}1\\-7\end{Mat} + 3\begin{Mat}-8\\3\end{Mat} - 2\begin{Mat}4\\-5\end{Mat} = \begin{Mat}-8\\16\end{Mat}
+        \end{equation*}
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.4\#7]
@@ -71,6 +127,24 @@
             6 \\ -8 \\ 0 \\ -7
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}
+        \begin{equation*}
+            \begin{Mat}
+                4 & -5 & 7 \\
+                -1 & 3 & -8 \\
+                7 & -5 & 0 \\
+                -4 & 1 & 2
+            \end{Mat}
+            \begin{Mat}
+                x_1 \\ x_2 \\ x_3
+            \end{Mat}
+            =
+            \begin{Mat}
+                6 \\ -8 \\ 0 \\ -7
+            \end{Mat}
+        \end{equation*}
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.4\#11]
@@ -85,6 +159,47 @@
             -2 \\ 2 \\ 9
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}
+        \begin{align*}
+            \begin{Mat}
+            1 & 2 & 4 & -2 \\
+            0 & 1 & 5 & 2 \\
+            -2 & -4 & -3 & 9
+            \end{Mat} & \equiv
+            \begin{Mat}
+            1 & 2 & 4 & -2 \\
+            0 & 1 & 5 & 2 \\
+            0 & 0 & 5 & 5  
+            \end{Mat} & R3 = 2*R1 + R3 \\ & \equiv
+            \begin{Mat}
+            1 & 2 & 4 & -2 \\
+            0 & 1 & 0 & -3 \\
+            0 & 0 & 5 & 5  
+            \end{Mat} & R2 = -R3 + R2 \\ & \equiv
+            \begin{Mat}
+            1 & 2 & 4 & -2 \\
+            0 & 1 & 0 & -3 \\
+            0 & 0 & 1 & 1  
+            \end{Mat} & R3 = \frac{1}{5}R3 \\ & \equiv
+            \begin{Mat}
+            1 & 0 & 4 & 4 \\
+            0 & 1 & 0 & -3 \\
+            0 & 0 & 1 & 1  
+            \end{Mat} & R1 = -2 * R2 + R1 \\ & \equiv
+            \begin{Mat}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & -3 \\
+            0 & 0 & 1 & 1  
+            \end{Mat} & R1 = -4 * R3 + R1 
+        \end{align*}
+
+        \begin{equation*}
+            \Vect{x} = \begin{Mat}
+                0 \\ -3 \\ 1
+            \end{Mat}
+        \end{equation*}
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.4\#15]
@@ -95,12 +210,61 @@
         b_1 \\ b_2
     \end{Mat}$. Show that the equation $A\Vect{x} = \Vect{b}$ does not have a solution for all possible $\Vect{b}$, 
     and describe the solution set of all $\Vect{b}$ for which $A\Vect{x} = \Vect{b}$ \textit{does} has a solution.
+
+    \begin{solution}
+        \begin{align*}
+            \begin{Mat}
+                2 & -1 & b_1 \\
+                -6 & 3 & b_2
+            \end{Mat} & \equiv
+            \begin{Mat}
+                2 & -1 & b_1 \\
+                0 & 0 & 3b_1 + b_2
+            \end{Mat} & R2 = 3 * R1 + R2
+        \end{align*}
+
+        $A\Vect{x} = \Vect{b}$ has a solution for all $b_1$ and $b_2$ such that $3b_1 + b_2 = 0$.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.4\#19]
     Can each vector in $\R^4$ be written as a linear combination of the columns of the matrix $A$? Do the columns of $A$ span $\R^4$?
+    \begin{equation*}
+        A = \begin{Mat}
+            1 & 3 & 0 & 3 \\
+            -1 & -1 & -1 & 1 \\
+            0 & -4 & 2 & -8 \\
+            2 & 0 & 3 & -1
+        \end{Mat}
+    \end{equation*}
+
+    \begin{solution}
+        \begin{align*}
+            \begin{Mat}
+                1 & 3 & 0 & 3 \\
+                -1 & -1 & -1 & 1 \\
+                0 & -4 & 2 & -8 \\
+                2 & 0 & 3 & -1
+            \end{Mat} & \equiv
+            \begin{Mat}
+                1 & 3 & 0 & 3 \\
+                0 & 2 & -1 & 4 \\
+                0 & -4 & 2 & -8 \\
+                2 & 0 & 3 & -1
+            \end{Mat} & R2 = R1 + R2 \\ & \equiv
+            \begin{Mat}
+                1 & 3 & 0 & 3 \\
+                0 & 2 & -1 & 4 \\
+                0 & 0 & 0 & 0 \\
+                2 & 0 & 3 & -1
+            \end{Mat} & R3 = 2 * R2 + R3
+        \end{align*}
+
+        No, the columns of $A$ do not span $\R^4$ because they are not linearly independent.
+    \end{solution}
 \end{problem}
 
+\pagebreak
 \begin{problem}[1.4\#21]
     Let $\Vect{v_1} = \begin{Mat}
         1 \\ 0 \\ -1 \\ 0
@@ -109,40 +273,139 @@
     \end{Mat}$, $\Vect{v_3} = \begin{Mat}
         1 \\ 0 \\ 0 \\ -1
     \end{Mat}$. Does $\Set{\Vect{v_1}, \Vect{v_2}, \Vect{v_3}}$ span $\R^3$? Why or why not?
+
+    \begin{solution}
+        \begin{align*}
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & -1 & 0 \\
+                -1 & 0 & 0 \\
+                0 & 1 & -1
+            \end{Mat} & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & -1 & 0 \\
+                0 & 0 & 1 \\
+                0 & 1 & -1
+            \end{Mat} & R3 = R1 + R3 \\ & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & 0 & -1 \\
+                0 & 0 & 1 \\
+                0 & 1 & -1
+            \end{Mat} & R2 = R4 + R2 \\ & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & 0 & -1 \\
+                0 & 0 & 0 \\
+                0 & 1 & -1
+            \end{Mat} & R3 = R2 + R3 \\ & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & 1 & -1 \\
+                0 & 0 & 0 
+                0 & 0 & -1 \\
+            \end{Mat} & \text{Swap R2 \& R4}\\ & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & 1 & -1 \\
+                0 & 0 & -1 \\
+                0 & 0 & 0 
+            \end{Mat} & \text{Swap R3 \& R4}\\ & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & 1 & -1 \\
+                0 & 0 & 1 \\
+                0 & 0 & 0 
+            \end{Mat} & R3 = -R3 \\ & \equiv
+            \begin{Mat}
+                1 & 0 & 1 \\
+                0 & 1 & 0 \\
+                0 & 0 & 1 \\
+                0 & 0 & 0 
+            \end{Mat} & R2 = R3 + R2 \\ & \equiv
+            \begin{Mat}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 1 \\
+                0 & 0 & 0 
+            \end{Mat} & R1 = R1 - R2
+        \end{align*}
+
+        No, $\Set{\Vect{v_1}, \Vect{v_2}, \Vect{v_3}}$ does not spans all of $\R^3$ because there is not a pivot position in each row.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.4\#25]
-    Mark each statement as True or False. Justify your answer.
+    Note that $\begin{Mat}
+        4 & -3 & 1 \\
+        5 & -2 & 5 \\
+        -6 & 2 & -3
+    \end{Mat}\begin{Mat}
+        -3 \\ -1 \\ 2
+    \end{Mat} = \begin{Mat}
+        -7 \\ -3 \\ 10
+    \end{Mat}$. Use this fact (and no row operations) to find scalars $c_1, c_2, c_3$ such that
+    $\begin{Mat}-7\\-3\\10\end{Mat} = c_1\begin{Mat}4\\5\\-6\end{Mat} + c_2\begin{Mat}-3\\-2\\2\end{Mat} + c_3\begin{Mat}1\\5\\-3\end{Mat}$.
 
-    \begin{enumerate}[label=(\alph*)]
-        \item The equation $A\Vect{x} = b$ is referred to as the \textit{vector equation}.
-        \item A vector $\Vect{b}$ is a linear combination of the columns of a matrix $A$ if and only if the equation $A\Vect{x} = \Vect{b}$ has at least one solution.
-        \item The equation $A\Vect{x} = \Vect{b}$ is consistent if the augmented matrix $\begin{Mat}
-            A & \Vect{b}
-        \end{Mat}$ has a pivot position in every row.
-        \item The first entry in the product $A\Vect{x}$ is a sum of products.
-        \item If the columns of an $m \times n$ matrix $A$ span $\R^m$, then the equation $A\Vect{x} = \Vect{b}$ is consistent for each b in $\R^m$.
-        \item If $A$ is an $m \times n$ matrix and if the equation $A\Vect{x} = \Vect{b}$ is inconsistent for some $\Vect{b}$ in $\R^m$, then $A$ cannot have a pivot position in every row.
-    \end{enumerate}
+    \begin{solution}
+        The scalars are $c_1 = -3, c_2 = -1, c_3 = 2$.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.5\#1]
-    Determin if the system  has a nontrival solution. Try to use as few row operations as possible.
+    Determine if the system  has a nontrival solution. Try to use as few row operations as possible.
 
     \begin{align*}
         2x_1 - 5x_2 + 8x_3 &= 0 \\
         -2x_2 - 7x_2 + x_3 &= 0 \\
         4x_1 + 2x_2 + 7x_3 &= 0
     \end{align*}
+
+    \begin{solution}
+        \begin{align*}
+            \begin{Bmatrix}
+                2x_1 - 5x_2 + 8x_3 = 0 \\
+                -2x_2 - 7x_2 + x_3 = 0 \\
+                4x_1 + 2x_2 + 7x_3 = 0
+            \end{Bmatrix} & \equiv
+            \begin{Mat}
+                2 & -5 & 8 & 0 \\
+                -2 & -7 & 1 & 0 \\
+                4 & 2 & 7 & 0
+            \end{Mat} \\ & \equiv
+            \begin{Mat}
+                2 & -5 & 8 & 0 \\
+                0 & -12 & 9 & 0 \\
+                4 & 2 & 7 & 0
+            \end{Mat} & R2 = R1 + R2 \\ & \equiv
+            \begin{Mat}
+                2 & -5 & 8 & 0 \\
+                0 & -12 & 9 & 0 \\
+                0 & 12 & -9 & 0
+            \end{Mat} & R3 = -2 * R1 + R3 \\ & \equiv
+            \begin{Mat}
+                2 & -5 & 8 & 0 \\
+                0 & -12 & 9 & 0 \\
+                0 & 0 & 0 & 0
+            \end{Mat} & R3 = R2 + R3
+        \end{align*}
+
+        The system has a nontrival solution because there is a free variable.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.5\#3]
-    Determin if the system  has a nontrival solution. Try to use as few row operations as possible.
+    Determine if the system  has a nontrival solution. Try to use as few row operations as possible.
 
     \begin{align*}
         -3x_1 + 5x_2 - 7x_3 &= 0 \\
         -6x_1 + 7x_2 + x_3 &= 0
     \end{align*}
+
+    \begin{solution}
+        The system has a nontrival solution because it is undetermined, so it has a free variable.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.5\#7]
@@ -154,8 +417,32 @@
             0 & 1 & -4 & 5
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}
+        \begin{align*}
+            A = \begin{Mat}
+                1 & 3 & -3 & 7 \\
+                0 & 1 & -4 & 5
+            \end{Mat} & =
+            \begin{Mat}
+                1 & 0 & 9 & -8 \\
+                0 & 1 & -4 & 5
+            \end{Mat} & R1 = -3 * R2 + R1 \\
+            A\Vect{x} = 0 & \equiv
+            \begin{Bmatrix}
+                x_1 + 9x_3 - 8x_4 = 0 \\
+                x_2 - 4x_3 + 5x_4 = 0
+            \end{Bmatrix} \\ & \equiv
+            \begin{Bmatrix}
+                x_1 = 8x_4 - 9x_3 \\
+                x_2 = 4x_3 - 5x_4
+            \end{Bmatrix} \\
+            & \implies \Vect{x} = x_3\begin{Mat}-9\\4\\1\\0\end{Mat} + x_4\begin{Mat}8\\-5\\0\\1\end{Mat}
+        \end{align*}
+    \end{solution}
 \end{problem}
 
+\pagebreak
 \begin{problem}[1.5\#11]
     Describe all solutions of $A\Vect{x} = \Vect{0}$ in parametric form, where $A$ is row equivalent to the given matrix.
 
@@ -167,12 +454,54 @@
             0 & 0 & 0 & 0 & 0 & 0
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}
+        \begin{align*}
+            A = \begin{Mat}
+                1 & -4 & -2 & 0 & 3 & -5 \\
+                0 & 0 & 1 & 0 & 0 & -1 \\
+                0 & 0 & 0 & 0 & 1 & -4 \\
+                0 & 0 & 0 & 0 & 0 & 0
+            \end{Mat} & =
+            \begin{Mat}
+                1 & -4 & 0 & 0 & 3 & -7 \\
+                0 & 0 & 1 & 0 & 0 & -1 \\
+                0 & 0 & 0 & 0 & 1 & -4 \\
+                0 & 0 & 0 & 0 & 0 & 0
+            \end{Mat} & R1 = 2 * R2 + R1 \\ & =
+            \begin{Mat}
+                1 & -4 & 0 & 0 & 0 & 5 \\
+                0 & 0 & 1 & 0 & 0 & -1 \\
+                0 & 0 & 0 & 0 & 1 & -4 \\
+                0 & 0 & 0 & 0 & 0 & 0
+            \end{Mat} & R1 = -3 * R23+ R1 \\
+            A\Vect{x} = 0 & \equiv 
+            \begin{Bmatrix}
+                x_1 - 4x_2 + 5x_6 = 0 \\
+                x_3 - x_6 = 0 \\
+                x_5 - 4x_6 = 0
+            \end{Bmatrix} \\ & \equiv
+            \begin{Bmatrix}
+                x_1 = 4x_2 - 5x_6 \\
+                x_3 = x_6 \\
+                x_5 = 4x_6
+            \end{Bmatrix} \\
+            & \implies \Vect{x} = x_2\begin{Mat}4\\1\\0\\0\\0\\0\end{Mat} + x_4\begin{Mat}0\\0\\0\\1\\0\\0\end{Mat}  + x_6\begin{Mat}-5\\0\\1\\0\\4\\1\end{Mat}
+        \end{align*}
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.5\#13]
     Suppose the solution set of a certain linear system of equations can be described as $x_1 = 5 + 4x_3$, $x_2 = -2 -7x_3$, with $x_3$ free. Use vectors to describe this set as a line in $\R^3$.
+
+    \begin{solution}
+        \begin{equation*}
+            \Vect{x}(t) = t\begin{Mat}4\\-7\\1\end{Mat} + \begin{Mat}5\\-2\\0\end{Mat}
+        \end{equation*}
+    \end{solution}
 \end{problem}
 
+\pagebreak
 \begin{problem}[1.5\#15]
     Follow the method of Example 3 to describe the solution  of the following system in parametric form. 
     Also, give a geometric description of the solution set and compare it to that in Exercise 5.
@@ -182,7 +511,47 @@
         -4x_1 - 9x_2 + 2x_3 & = -1 \\
         -3x_2 - 6x_3 &= -3
     \end{align*}
-\end{problem}
+
+    \begin{solution}
+        \begin{align*}
+            \begin{Bmatrix}
+                x_1 + 3x_2 + x_3  = 1 \\
+                -4x_1 - 9x_2 + 2x_3  = -1 \\
+                -3x_2 - 6x_3 = -3
+            \end{Bmatrix} & \equiv
+            \begin{Mat}
+                1 & 3 & 1 & 1 \\
+                -4 & -9 & 2 & -1 \\
+                0 & -3 & -6 & -3
+            \end{Mat} \\ & \equiv
+            \begin{Mat}
+                1 & 3 & 1 & 1 \\
+                0 & 3 & 6 & 3 \\
+                0 & -3 & -6 & -3
+            \end{Mat} R2 = 4*R1 + R2 \\ & \equiv
+            \begin{Mat}
+                1 & 3 & 1 & 1 \\
+                0 & 3 & 6 & 3 \\
+                0 & 0 & 0 & 0
+            \end{Mat} R3 = R2 + R3 \\ & \equiv
+            \begin{Bmatrix}
+                x_1 - 5x_3 = 2 \\
+                x_2 + 2x_3 = 1
+            \end{Bmatrix} \\ & \equiv
+            \begin{Bmatrix}
+                x_1 = 5x_3 -2 \\
+                x_2 = 1 - 2x_3
+            \end{Bmatrix} \\ & \equiv
+            \Vect{x}(t) = t\begin{Mat}5\\-2\\1\end{Mat} + \begin{Mat}-2\\1\\0\end{Mat}
+        \end{align*}
+
+        The solution set to this system is a line in $\R^3$ that goes through$\begin{Mat}
+            -2\\1\\0
+        \end{Mat}$ and parallel to $\begin{Mat}
+            5\\-2\\1
+        \end{Mat}$.
+    \end{solution}
+\end{problem} 
 
 \begin{problem}[1.5\#19]
     Find the parametric equation of the line through $\Vect{a}$ and parallel to $\Vect{b}$.
@@ -194,19 +563,61 @@
             -5 \\ 3
         \end{Mat}
     \end{equation*}
+
+    \begin{solution}
+        \begin{equation*}
+            \Vect{x}(t) = t\Vect{b} + \Vect{a} = t\begin{Mat}-5\\3\end{Mat}  + \begin{Mat}-2\\0\end{Mat}
+        \end{equation*}
+    \end{solution}
 \end{problem}
 
+\pagebreak
 \begin{problem}[1.5\#25]
     Prove the second part of Theorem 6: Let $\Vect{w}$ be any solution of $A\Vect{x} = \Vect{b}$, and define $\Vect{v_h} = \Vect{w} - \Vect{p}$. Show that $\Vect{v_h}$ is a solution of $A\Vect{x} = \Vect{0}$.
     This shows that every solution of $A\Vect{x} = \Vect{b}$ has the form $\Vect{w} = \Vect{p} + \Vect{v_h}$, with $\Vect{p}$ a particular solution of $A\Vect{x} = \Vect{b}$ and $\Vect{v_h}$ a solution of $A\Vect{x} = 0$.
+
+    \begin{solution}
+        \begin{proof}
+            Given $\Vect{p}$ is a solution to $A\Vect{x} = \Vect{b}$, and $\Vect{w}$ is a solution to $A\Vect{x} = \Vect{b}$, $\Vect{v_h} = \Vect{w} - \Vect{p}$ is a solution to $A\Vect{x} = 0$
+
+            \begin{align}
+                0 & = A\Vect{v_h} \\
+                & = A(\Vect{w} - \Vect{p}) &\By{substitution}\\
+                & = A\Vect{w} - A\Vect{p} &\By{distributive property}\\
+                0 & = \Vect{b} - A\Vect{p} &\By{substitution}\\
+                A\Vect{p} & = \Vect{b} &\By{addition}\\
+                \Vect{b} & = \Vect{b} &\By{substitution}
+            \end{align}
+        \end{proof}
+
+        Therefore if $\Vect{p}$ is a solution to $A\Vect{x} = \Vect{b}$, and $\Vect{w}$ is a solution to $A\Vect{x} = \Vect{b}$, then $\Vect{v_h} = \Vect{w} - \Vect{p}$ is a solution to $A\Vect{x} = 0$
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.5\#27]
     Suppose $A$ is a $3 \times 3$ \textit{zero} matrix (with all zero entries). Describe the solution set of the equation $A\Vect{x} = \Vect{0}$.
+
+    \begin{solution}
+        The solution set of the equation $A\Vect{x} = 0$ when $A = \begin{Mat}
+            0 & 0 & 0\\
+            0 & 0 & 0\\
+            0 & 0 & 0
+        \end{Mat}$ is all vectors in $\R^3$.
+    \end{solution}
 \end{problem}
 
 \begin{problem}[1.5\#39s]
     Let $A$ be an $m \times n$ matrix, and let $\Vect{u}$ be a vector in $\R^n$ that satisfies the equation $A\Vect{x} = \Vect{0}$. Show that for any scalar $c$ the vector $c\Vect{u}$ also satisfies $A\Vect{x} = \Vect{0}$. [That is, show that $A(c\Vect{u}) = \Vect{0}$].
+
+    \begin{solution}
+        Given $A\Vect{u} = 0$
+
+        \begin{align*}
+            A(c\Vect{u}) & = (A\Vect{u})c & \By{Associative property} \\
+            & = (0)c & \By{substitution} \\
+            & = 0 & \By{multiplication of zero}
+        \end{align*}
+    \end{solution}
 \end{problem}
 
 \end{document}
