@@ -86,12 +86,13 @@
     \@enterProblemHeader{@problemCounter}
 
     \newenvironment{solution}[1][Solution:]{
+        \vspace{0.5em}
         \subsubsection*{##1}
         \noindent\ignorespaces
     }{}
 
     \newcommand{\labeleq}[1]{\label{eq:\thesubsection##1}}
-    \newcommand{\refeq}[1]{\ref{eq:\thesubsection##1}}
+    \newcommand{\refeq}[1]{(\ref{eq:\thesubsection##1})}
 }{
     \@exitProblemHeader{@problemCounter}
     \setcounter{equation}{0}
@@ -99,14 +100,16 @@
     \ignorespacesafterend
 }
 
-% Useful commands
-
 % Number sets
 \newcommand{\R}{\mathbb{R}}  % The real numbers.
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{\Q}}
+\newcommand{\Q}{\mathbb{Q}}
 
-% Object notations
-\newcommand{\Vect}[1]{\pmb{#1}}
-\newcommand{\Set}[1]{\{#1\}}
+% Proof helpers
+\newcommand{\Let}{\textit{let }}
+\newcommand{\By}[1]{\text{(by #1)}}
+
+% Set symbols
+\newcommand{\Powerset}[1]{\mathcal{P}(#1)}
+\newcommand{\LUB}{\text{LUB }}
