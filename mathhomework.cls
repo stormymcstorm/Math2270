@@ -1,7 +1,7 @@
 \ProvidesClass{mathhomework}
 \NeedsTeXFormat{LaTeX2e}[1999/09/01]
 
-\LoadClass{article}
+\LoadClass[12pt]{article}
 
 % Load packages
 \RequirePackage{ifthen}
@@ -42,7 +42,13 @@
 \pagestyle{fancy}
 
 \lhead{\@student}
-\chead{\@coursetitle\ (\@courseinstructor): \@assignmenttitle}
+
+\ifthenelse{\isundefined{notitleheader}}{
+    \chead{\@coursetitle\ (\@courseinstructor): \@assignmenttitle}
+}{
+    \chead{\@coursetitle\ (\@courseinstructor)}
+}
+
 \cfoot{\thepage}
 
 \renewcommand\headrulewidth{0.4pt}
