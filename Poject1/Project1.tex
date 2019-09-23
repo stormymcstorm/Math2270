@@ -2,6 +2,7 @@
 \usepackage{enumitem}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{apacite}
 
 \newcommand{\Span}[1]{\textit{Span}\{#1\}}
 \newcommand{\Vect}[1]{\pmb{#1}}
@@ -15,7 +16,9 @@
 \textheight=9.0in
 \headsep=0.25in
 
-\linespread{1.1}
+\linespread{1.5}
+
+\setlength{\parindent}{1cm}
 
 % Assignment Info
 \newcommand{\notitleheader}{}
@@ -24,7 +27,7 @@
 
 \student{Carson Storm}
 
-\assignmenttitle{Applications of Linear Algebra in Signal Anaylsis \& Cryptography}
+\assignmenttitle{Applications of Linear Algebra in Image Processing \& Cryptography}
 \assignmentduedate{September 22, 2019}
 
 \begin{document}
@@ -32,14 +35,179 @@
 
 \pagebreak
 
-\section{Signal Analysis}
+\section{Image Processing}
+
+\subsection{Description of topic}
+
+Digital Image Processing encompasses the transformation of digital images in order to produce an 
+image that is more suitable for analysis or viewing \cite{mcconnell03}. The two main motivations for 
+image processing are to change the appearance of the image and to extract information from the image, 
+both rely heavily on concepts from linear algebra. Images are very often represented by matrices whose 
+entries correspond to a numerical representation of the color of the pixel at the same location as 
+the entry. For example, if the top left most pixel is black, if entry in the first column in the first 
+row would be the number representing black. Image processing can be defined simply as performing an 
+operation on the data contained in the image \cite{gonzalez18}.
+
+Most transformations that are used for the purpose of extracting information alter the image or remove 
+extraneous information until the image is in a state that is more easily analyzed. For example, an 
+image can be enhanced by suppressing the details of the image that are not important to the current 
+task \cite{mcconnell03}.
+While altering an image is rarely enough to put an image into a state in which it is easily analyzed,
+it is often a step towards the desired result. These transformations usually take the form of affine
+transformation, such as scaling, reflection, translation, rotation or shearing \cite{gonzalez18}.
+For example, a image may need to be flipped horizontally in order to have the right perspective
+before further filtering.
+The removal of extraneous information is often achieved through filtering. Filtering can take 
+two main forms, spatial filter, and frequency filtering. This paper will focus on Spatial filtering, as 
+it is more relevant to Linear Algebra. Spatial filter is filtering that defines a new image in terms of 
+some operation that operates on each pixel in the image \cite{gonzalez18}. Some examples of spatial 
+filtering are noise reduction, increasing contrast or thresholding, were if entries are not in some 
+range they are set to some constant \cite{gonzalez18}. Spatial filter is performed by computing the 
+discrete convolution of the image and some kernel that is specific to the type of filtering \cite{gonzalez18}. 
+Convolution in the context of image processing is related to, but different than the definition of 
+mathematical convolution, convolution is defined as
+\begin{equation*}
+    g(x,y) = \omega * f(x,y) = \sum^a_{s=-a} \sum^b_{t=-b} \omega(s,t) f(x - s, y - t)
+\end{equation*}
+where $g(x,y)$ is the filter image, $f(x,y)$ is the original image, $\omega$ is the kernel, such that
+every entry is $(s,t)$ is of the form $-a \leq s \leq a$ and $-b \leq t \leq b$ \cite{lecarme13}.
+
+Image processing also often used simply to alter a image for display purposes. For example, an application
+might want to flip a image horizontally, so that it has the perspective we are used to, or it might want to
+convert the image to grayscale. This type of image processing utilizes the same method described earlier.
+
+\subsection{Motivation for choice of topic}
+
+I chose the topic of image processing to discuss because I have experience implementing image processing 
+algorithms, but before taking this class and researching this topic I had no idea how any of the libraries 
+I was using and in most cases how each part of my algorithms functioned. I relied mostly on the documentation 
+for the libraries and copying and pasting from the internet to get the algorithms to function. I was unsure why
+ I was using certain method calls or why I had to transpose my matrix before passing it to a certain method.
+
+One such time I utilized image processing in the past was for my robotics team. I needed to identify certain 
+objects on the playing field and perform tasks depending on certain tasks depending on whether an object was in 
+view of the camera and where it was. I had toyed with the idea of using machine learning to determine if the 
+object was in view, but the time it would take to train a model and to actually use the neural network was too 
+long. I instead implemented an algorithm that detected the object using computer vision, an application of image 
+processing, I used various types of filtering to look for the color and shape that I knew the object would be to 
+determine whether the object was in view. The process of implementing this algorithm was fairly difficult because 
+I had no idea what I needed to do to get the information I needed from the camera, so I wanted to research this 
+topic so that in the future if I need to implement another algorithm like this I will have a better understanding 
+of what I need to do.
+
+
+\subsection{Example of topic}
+
+All of the following examples will be demonstrated by operating on Figure \ref{fig1}
+
+\begin{figure}[H] 
+    \begin{center}
+        \includegraphics{figures/original.jpg}
+    \end{center}
+    \caption{Original Image}
+    \label{fig1}
+\end{figure}    
+
+\subsubsection{Reflection}
+In order to reflect an image a simple affine transformation is necessary such that every pixel in the resulting
+image is defined by
+\begin{equation*}
+    \begin{bmatrix}
+        x' \\ y'
+    \end{bmatrix} =
+    \begin{bmatrix}
+        -1 & 0 \\
+        0 & 1
+    \end{bmatrix}
+    \begin{bmatrix}
+        x \\ y
+    \end{bmatrix}
+\end{equation*}
+where $(x,y)$ are the pixel coordinates in the original image and $(x', y')$ are the pixel coordinates in the transformed image.
+If this process performed on Figure \ref{fig1} would result in Figure \ref{fig2}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics{figures/reflected.jpg}
+    \end{center}
+
+    \caption{Reflected image}\label{fig2}
+\end{figure}
+
+\subsubsection{Grayscale}
+To convert an image to grayscale a simple operation is performed on each pixel such that each pixel in the resulting 
+image is defined by
+\begin{equation*}
+    c = 0.3R + 0.59G + 0.11B
+\end{equation*}
+where $c$ is value of the pixel in the transformed image and $R,G,B$ are the red, green and blue values of the pixel in the original image.
+If this process performed on Figure \ref{fig1} would result in Figure \ref{fig3}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics{figures/gray.jpg}
+    \end{center}
+
+    \caption{Grayscale image}
+    \label{fig3}
+\end{figure}
+
+\subsubsection{Blur}
+To blur an image, the convolution of the matrix and a Gaussian blur kernel can be computed, so that each pixel in the resulting image is defined by
+\begin{equation*}
+    g(x,y) = \omega * f(x,y) = \sum^1_{s=-1} \sum^1_{t=-1} \omega(s,t) f(x - s, y - t), \omega = \frac{1}{16}\begin{bmatrix}
+        1 & 2 & 1 \\ 
+        2 & 4 & 2 \\
+        1 & 2 & 1
+    \end{bmatrix}
+\end{equation*}
+where $g(x,y)$ is the filter image, $f(x,y)$ is the original image, $\omega$ is the Gaussian blur kernel.
+If this process performed on Figure \ref{fig1} would result in Figure \ref{fig4}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics{figures/gaussian.jpg}
+    \end{center}
+
+    \caption{Blurred image}
+    \label{fig4}
+\end{figure}
+
+\subsubsection{Laplacian}
+
+The laplacian can be used to detect the edges in an image. To perform the laplacian on the an image, each pixel in the resulting image is defined by
+\begin{equation*}
+    g(x,y) = \omega * f(x,y) = \sum^1_{s=-1} \sum^1_{t=-1} \omega(s,t) f(x - s, y - t), \omega = \begin{bmatrix}
+        0 & 1 & 0 \\ 
+        1 & -4 & 1 \\ 
+        0 & 1 & 0
+    \end{bmatrix}
+\end{equation*}
+where $g(x,y)$ is the filter image, $f(x,y)$ is the original image, $\omega$ is the laplacian kernel.
+If this process performed on Figure \ref{fig1} would result in Figure \ref{fig5}.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics{figures/laplacian.jpg}
+    \end{center}
+
+    \caption{Edge detected image}
+    \label{fig5}
+\end{figure}
 
 \pagebreak
 
 \section{Cryptography}
 
+\subsection{Description of topic}
+
+\subsection{Motivation for choice of topic}
+
+\subsection{Example of topic}
+
 \pagebreak
 
-\section{Bibliography}
+\bibliographystyle{apacite}
+\bibliography{sources}
 
 \end{document}
