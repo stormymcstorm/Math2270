@@ -225,12 +225,17 @@ key which results in a matrix whose entries are the encrypted message. To decryp
 containing the encrypted message is left multiplied by the inverted key. This results in a matrix whose entries 
 are the numerical representation of the characters of the message \cite{hill29}.
 
-Lattice-based encryption encompasses cryptosystems that utilize lattices in order to secure data. Most of these 
-systems use the Shortest Vector Problem to provide a secure system. The Shortest Vector Problem relies on the 
+Lattice-based encryption encompasses cryptosystems that utilize lattices in order to secure data. A lattice is the set of all linear combinations of
+linearly independent vectors with integer coefficients. The lattice for the vectors $v_1, v_2, \ldots v_n$ is
+\begin{equation*}
+    L = \{\sum a_iv_i: a_i \in \Z\}
+\end{equation*}
+Most of these systems use the Shortest Vector Problem to provide a secure system.The Shortest Vector Problem relies on the 
 fact that finding the shortest, non-zero vector in a lattice is hard to solve efficiently \cite{ajtai98}. These 
 cryptosystems are considered to be a possible alternative to today's most popular cryptosystems for post-quantum 
 cryptography since it has been shown that most of today’s leading cryptosystems can be broken by a quantum 
-computer, but it has not been shown that lattice-based systems can be \cite{micciancio08}.
+computer, but it has not been shown that lattice-based systems can be \cite{micciancio08}. In short, Lattice-based
+cryptography utilizes concepts from Linear Algebra to create a secure cryptosystem.
 
 
 
