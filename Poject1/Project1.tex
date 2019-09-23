@@ -201,10 +201,87 @@ If this process performed on Figure \ref{fig1} would result in Figure \ref{fig5}
 
 \subsection{Description of topic}
 
+
+
 \subsection{Motivation for choice of topic}
 
 \subsection{Example of topic}
 
+The following piece of text "I love MATH2270" can be encrypted using a matrix by first converting the characters
+of the text to numbers (in this case we will use there ascii codes).
+\begin{table}[H]
+    \begin{tabular}{lllllllllllllll}
+    I  &    & l   & o   & v   & e   &    & M  & a  & t   & h   & 2  & 2  & 7  & 0  \\
+    73 & 32 & 108 & 111 & 118 & 101 & 32 & 77 & 97 & 116 & 104 & 50 & 50 & 55 & 48
+    \end{tabular}
+\end{table}
+\noindent If the following matrix with the following inverse is used as the cipher
+\begin{equation*}
+    A = \begin{bmatrix}
+        1 & 2 & 3 \\
+        0 & 1 & 2 \\
+        0 & 0 & 5
+    \end{bmatrix},
+    A^{-1} = \begin{bmatrix}
+        1 & -2 & \frac{1}{5} \\ 
+        0 & 1 & \frac{-2}{5} \\
+        0 & 0 & \frac{1}{5}
+    \end{bmatrix}
+\end{equation*}
+Then the message can be represented by the following matrix
+\begin{equation*}
+    \begin{bmatrix}
+        73 & 32 & 108 & 111 & 118 \\ 
+        101 & 32 & 77 & 97 & 116 \\ 
+        104 & 50 & 50 & 55 & 48
+    \end{bmatrix}
+\end{equation*}
+The product of these two matrices gives use the encrypted message
+\begin{equation*}
+    \begin{bmatrix}
+        1 & 2 & 3 \\
+        0 & 1 & 2 \\
+        0 & 0 & 5
+    \end{bmatrix}
+    \begin{bmatrix}
+        73 & 32 & 108 & 111 & 118 \\ 
+        101 & 32 & 77 & 97 & 116 \\ 
+        104 & 50 & 50 & 55 & 48
+    \end{bmatrix} = \begin{bmatrix}
+        587 & 246 & 412 & 470 & 494 \\
+        309 & 132 & 177 & 207 & 212 \\
+        520 & 250 & 250 & 275 & 240
+    \end{bmatrix}
+\end{equation*}
+The encrypted message is then
+\begin{equation*}
+    587, 246, 412, 470, 494, 309, 132, 177, 207, 212, 520, 250, 250, 275, 240
+\end{equation*}
+To decrypt the message, the matrix is just multiplied by the inverse of the cipher
+\begin{equation*}
+    \begin{bmatrix}
+        1 & -2 & \frac{1}{5} \\ 
+        0 & 1 & \frac{-2}{5} \\
+        0 & 0 & \frac{1}{5}
+    \end{bmatrix}
+    \begin{bmatrix}
+        587 & 246 & 412 & 470 & 494 \\
+        309 & 132 & 177 & 207 & 212 \\
+        520 & 250 & 250 & 275 & 240
+    \end{bmatrix} =
+    \begin{bmatrix}
+        73 & 32 & 108 & 111 & 118 \\ 
+        101 & 32 & 77 & 97 & 116 \\ 
+        104 & 50 & 50 & 55 & 48
+    \end{bmatrix}
+\end{equation*}
+This matrix can then be converted back to text to get "I love Math2270"
+\begin{table}[H]
+    \begin{tabular}{lllllllllllllll}
+        73 & 32 & 108 & 111 & 118 & 101 & 32 & 77 & 97 & 116 & 104 & 50 & 50 & 55 & 48 \\
+        I  &    & l   & o   & v   & e   &    & M  & a  & t   & h   & 2  & 2  & 7  & 0 
+    \end{tabular}
+\end{table}
 \pagebreak
 
 \bibliographystyle{apacite}
