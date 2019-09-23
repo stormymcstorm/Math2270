@@ -201,6 +201,37 @@ If this process performed on Figure \ref{fig1} would result in Figure \ref{fig5}
 
 \subsection{Description of topic}
 
+Cryptography is a tool used to keep information that potentially untrusted entities have access to,
+secret \cite{menezes97}. Cryptography is used to make this information ideally only readable by those who are 
+trusted. Cryptography is based on mathematical problems are hard to solve without knowing some secret, 
+and so only the person with the secret can solve the problem and read the message. Each of these problems is 
+defined by a cryptosystem, which essentially defines a set of possible keys (the secret) and a set of encryption 
+and decryption algorithms corresponding to each key \cite{zwicke03}. There are numerous cryptosystems that have been 
+designed, but all fit into two categories, symmetric and asymmetric. A symmetric system has a shared key, that 
+is used to both encrypt and decrypt the data, this means that both parties need to have the key \cite{zwicke03}. An 
+asymmetric system has a public key and a private key, the public key is used to encrypt the data, and the private 
+key is used to decrypt the data, this means that a key does not need to be shared with both parties \cite{zwicke03}. 
+This increases the security of the system because the key of a symmetric system can be compromised when it is 
+being shared. The two cryptosystems that this paper will focus on are the Hill Cipher and Lattice-based encryption 
+because they are most relevant to Linear Algebra.
+
+The Hill Cipher is a symmetric cryptosystem based on matrix multiplication \cite{overbey05}. The key for a Hill Cipher is 
+an invertible matrix that is left multiplied with a matrix that represents the matrix  \cite{overbey05}. Today the Hill 
+Cipher is not used do to its susceptibility to cryptoanalysis (ie. it is relatively easy to guess the key that is 
+being used) \cite{overbey05}. The encryption algorithm starts by converting each character in the message to a 
+standard numerical representation. Then, it places those numbers into a matrix with the same number of rows as 
+the key matrix and as many columns as are needed to fit the message. This matrix is then left multiplied by the 
+key which results in a matrix whose entries are the encrypted message. To decrypt the message the matrix 
+containing the encrypted message is left multiplied by the inverted key. This results in a matrix whose entries 
+are the numerical representation of the characters of the message \cite{hill29}.
+
+Lattice-based encryption encompasses cryptosystems that utilize lattices in order to secure data. Most of these 
+systems use the Shortest Vector Problem to provide a secure system. The Shortest Vector Problem relies on the 
+fact that finding the shortest, non-zero vector in a lattice is hard to solve efficiently \cite{ajtai98}. These 
+cryptosystems are considered to be a possible alternative to today's most popular cryptosystems for post-quantum 
+cryptography since it has been shown that most of today’s leading cryptosystems can be broken by a quantum 
+computer, but it has not been shown that lattice-based systems can be \cite{micciancio08}.
+
 
 
 \subsection{Motivation for choice of topic}
