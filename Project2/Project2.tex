@@ -1,0 +1,135 @@
+\documentclass{../mathhomework}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{apacite}
+
+\newcommand{\Span}[1]{\textit{Span}\{#1\}}
+\newcommand{\Vect}[1]{\pmb{#1}}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+\newcommand{\Adj}[1]{\mathrm{adj}(#1)}
+\newcommand{\BlankLine}{\nonumber \\}
+
+% Document Settings
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.5}
+
+\setlength{\parindent}{1cm}
+
+% Assignment Info
+\newcommand{\notitleheader}{}
+\coursetitle{Linear Algebra}
+\courseinstructor{Professor MacArthur}
+
+\student{Carson Storm}
+
+\assignmenttitle{Applications of Linear Algebra in Image Processing \& Cryptography}
+\assignmentduedate{September 22, 2019}
+
+\begin{document}
+\maketitle
+
+\pagebreak
+
+\section{Math}
+
+\begin{problem}
+    You intercept the message "SONAFQCHMWPTVEVY", which you know was enciphered using a Hill 2-cipher. An earlier statistical analysis of a long string of intercepted cipher-text revealed that the most frequently occurring cipher-text digraphs were "KH" and "XW" in that order. You take a guess that those digraphs correspond to "TH" and "HE", respectively, since those are the most frequently occurring digraphs in most long plaintext messages on the subject you think is being discussed. Find the deciphering matrix and state what the message is supposed to be
+
+    \begin{solution}
+        Using the assumption that "KH" decrypts to "TH" and "XW" decrypts to "HE", we can assume that the message "KHXW" should decrypt to "THHE" to find a decryption key by finding the modular
+        multiplicative inverse of the encrypted message and multiply it with the decrypted message to find the decryption key.
+        \begin{align}
+            \Let K &\text{ be the decryption key} \\
+            \Let P &\text{ be the encrypted message} = \begin{bmatrix}
+                K & X \\ H & W
+            \end{bmatrix} = \begin{bmatrix}
+                10 & 23 \\ 7 & 22
+            \end{bmatrix}\\
+            \Let Q &\text{ be the decrypted message} = \begin{bmatrix}
+                T & H \\ H & E
+            \end{bmatrix} = \begin{bmatrix}
+                19 & 7 \\ 7 & 4
+            \end{bmatrix}\\
+            \BlankLine
+            KP & = Q \Mod{26} \\
+            KP \cdot P^{-1} &= Q \cdot P^{-1} \Mod{26} \\
+            K & = Q \cdot P^{-1} \Mod{26} \\
+            \BlankLine
+            P^{-1} & = d^{-1} \cdot \Adj{P} \\
+            d \cdot d^{-1} & = 1 \Mod{26} \\
+            59 \cdot d^{-1} & = 1 \Mod{26} \\
+            d^{-1} &= 15 \\
+            P^{-1} &= 15 \cdot \begin{bmatrix}
+                22 & -23 \\ -7 & 10
+            \end{bmatrix} \\
+            P^{-1} & = \begin{bmatrix}
+                330 & -345 \\ -105 & 150
+            \end{bmatrix} \\
+            P^{-1} \Mod{26} & = \begin{bmatrix}
+                18 & 19 \\ 25 & 20
+            \end{bmatrix} \\
+            \BlankLine
+            K &= \begin{bmatrix}
+                19 & 7 \\ 7 & 4
+            \end{bmatrix} \begin{bmatrix}
+                18 & 19 \\ 25 & 20
+            \end{bmatrix} \\
+            K & = \begin{bmatrix}
+                517 & 501 \\ 266 & 213
+            \end{bmatrix}
+        \end{align}
+        We can then multiply the matrix that represents the message "SONAFQCHMWPTVEVY" with the decryption key to find the decrypted message.
+        \begin{align}
+            \Let P &= \begin{bmatrix}
+                S & N & F & C & M & P & V & V \\
+                O & A & Q & H & W & T & E & Y
+            \end{bmatrix} = \begin{bmatrix}
+                18 & 13 & 5 & 2 & 12 & 15 & 21 & 21 \\
+                14 & 0 & 16 & 7 & 22 & 19 & 4 & 24
+            \end{bmatrix} \\
+            KP & = \begin{bmatrix}
+                517 & 501 \\ 266 & 213
+            \end{bmatrix} \begin{bmatrix}
+                18 & 13 & 5 & 2 & 12 & 15 & 21 & 21 \\
+                14 & 0 & 16 & 7 & 22 & 19 & 4 & 24
+            \end{bmatrix} \\
+            KP & = \begin{bmatrix}
+                18 & 13 & 19 & 17 & 14 & 10 & 17 & 1 \\
+                4 & 0 & 14 & 19 & 14 & 1 & 8 & 4
+            \end{bmatrix} \Mod{26} \\
+            KP & = \begin{bmatrix}
+                S & N &  T & R & O & K & R & O\\
+                E & A & O & T & O & B & I & E
+            \end{bmatrix}
+        \end{align}
+        The decrypted message is "SENATORTOOKBRIBE" or "Senator took bribe".
+    \end{solution}
+\end{problem}
+
+\begin{problem}
+    In order to increase the difficulty of breaking your crypto-system, you decide to 
+    encipher your messages using a Hill 2-cipher by first applying the matrix
+    $\begin{bmatrix}
+        3 & 11 \\ 4 & 15
+    \end{bmatrix}$ 
+    working modulo 26 and then applying the matrix
+    $\begin{bmatrix}
+        10 & 15 \\ 5 & 9
+    \end{bmatrix}$
+    working modulo 29. Thus, while your plain-texts are in the usual 26 letter alphabet, your cipher-texts will be in the alphabet with 0-25 as usual and blank=26, ?=27, and !=28.
+
+    \begin{enumerate}[label=\alph*)]
+        \item Encipher the message “THIS IS A FUN PROJECT”.
+        \item Describe how to decipher a cipher-text by applying two matrices in succession, and decipher “ZMOY”.
+        \item Under what conditions is a matrix with entries module 29 invertible modulo 29?
+    \end{enumerate}
+\end{problem}
+
+\end{document}

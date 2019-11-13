@@ -88,7 +88,11 @@
 \nobreak\extramarks{Problem \arabic{@problemCounter}}{}\nobreak{}
 
 \newenvironment{problem}[1][]{
-    \section*{Problem \arabic{@problemCounter} (\large{#1})}
+    \ifthenelse{\equal{#1}{}}{
+        \section*{Problem \arabic{@problemCounter}}
+    }{
+        \section*{Problem \arabic{@problemCounter} (\large{#1})}
+    }
     \@enterProblemHeader{@problemCounter}
 
     \newenvironment{solution}[1][Solution:]{
