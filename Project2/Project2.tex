@@ -27,10 +27,12 @@
 \coursetitle{Linear Algebra}
 \courseinstructor{Professor MacArthur}
 
-\student{Carson Storm}
+\student{Nathan Gordon, Katerine Metcalf \& Carson Storm}
 
 \assignmenttitle{Applications of Linear Algebra in Image Processing \& Cryptography}
 \assignmentduedate{September 22, 2019}
+
+\lhead{}
 
 \begin{document}
 \maketitle
@@ -56,16 +58,24 @@
                 T & H \\ H & E
             \end{bmatrix} = \begin{bmatrix}
                 19 & 7 \\ 7 & 4
-            \end{bmatrix}\\
-            \BlankLine
-            KP & = Q \Mod{26} \\
-            KP \cdot P^{-1} &= Q \cdot P^{-1} \Mod{26} \\
-            K & = Q \cdot P^{-1} \Mod{26} \\
-            \BlankLine
+            \end{bmatrix}
+        \end{align}
+        To find the decryption key, $K$, we can use the equation $KP = Q \Mod{26}$, since we know that the product of the decryption key and the encrypted message show be equal
+        to the decrypted message.
+        \begin{align}
+            KP & = Q \Mod{26}\\
+            KP \cdot P^{-1} &= Q \cdot P^{-1} \Mod{26}\\
+            K & = Q \cdot P^{-1} \Mod{26}
+        \end{align}
+        In order to find $K$, we must find the modular multiplicative inverse of $P$ since we know that $P \cdot P^{-1} = I \Mod{26}$, we can use the inverse formula $P^{-1} = d^{-1} \cdot \Adj{P}$, where $d^{-1}$ is the modular multiplicative inverse of the determinate of $P$.
+        \begin{align}
             P^{-1} & = d^{-1} \cdot \Adj{P} \\
             d \cdot d^{-1} & = 1 \Mod{26} \\
             59 \cdot d^{-1} & = 1 \Mod{26} \\
             d^{-1} &= 15 \\
+            \Adj{P} &= \begin{bmatrix}
+                22 & -23 \\ -7 & 10
+            \end{bmatrix} \\
             P^{-1} &= 15 \cdot \begin{bmatrix}
                 22 & -23 \\ -7 & 10
             \end{bmatrix} \\
@@ -74,18 +84,21 @@
             \end{bmatrix} \\
             P^{-1} \Mod{26} & = \begin{bmatrix}
                 18 & 19 \\ 25 & 20
-            \end{bmatrix} \\
-            \BlankLine
+            \end{bmatrix}
+        \end{align}
+        Now, we can find the value of $K$, using the values of $Q$ and $P^{-1}$
+        \begin{align}
+            K &= QP^{-1} \Mod{26} \\
             K &= \begin{bmatrix}
                 19 & 7 \\ 7 & 4
             \end{bmatrix} \begin{bmatrix}
                 18 & 19 \\ 25 & 20
-            \end{bmatrix} \\
+            \end{bmatrix}\\
             K & = \begin{bmatrix}
                 517 & 501 \\ 266 & 213
             \end{bmatrix}
         \end{align}
-        We can then multiply the matrix that represents the message "SONAFQCHMWPTVEVY" with the decryption key to find the decrypted message.
+        Now that we have found the decryption key, we can use it to decrypt the message by multiplying the matrix that represents the message "SONAFQCHMWPTVEVY" with the decryption key to find the decrypted message.
         \begin{align}
             \Let P &= \begin{bmatrix}
                 S & N & F & C & M & P & V & V \\
@@ -94,17 +107,18 @@
                 18 & 13 & 5 & 2 & 12 & 15 & 21 & 21 \\
                 14 & 0 & 16 & 7 & 22 & 19 & 4 & 24
             \end{bmatrix} \\
+            KP & = Q \Mod{26} \\
             KP & = \begin{bmatrix}
                 517 & 501 \\ 266 & 213
             \end{bmatrix} \begin{bmatrix}
                 18 & 13 & 5 & 2 & 12 & 15 & 21 & 21 \\
                 14 & 0 & 16 & 7 & 22 & 19 & 4 & 24
-            \end{bmatrix} \\
-            KP & = \begin{bmatrix}
+            \end{bmatrix} = Q \Mod{26}\\
+            Q \Mod{26} & = \begin{bmatrix}
                 18 & 13 & 19 & 17 & 14 & 10 & 17 & 1 \\
                 4 & 0 & 14 & 19 & 14 & 1 & 8 & 4
             \end{bmatrix} \Mod{26} \\
-            KP & = \begin{bmatrix}
+            Q \Mod{26} & = \begin{bmatrix}
                 S & N &  T & R & O & K & R & O\\
                 E & A & O & T & O & B & I & E
             \end{bmatrix}

@@ -43,6 +43,8 @@
 
 \lhead{\@student}
 
+\chead{\@coursetitle\ (\@courseinstructor): \@assignmenttitle}
+
 \ifthenelse{\isundefined{notitleheader}}{
     \chead{\@coursetitle\ (\@courseinstructor): \@assignmenttitle}
 }{
